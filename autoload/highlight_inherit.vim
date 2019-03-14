@@ -1,10 +1,10 @@
 " A recursive version of https://vi.stackexchange.com/a/12305
-function! GetHighlightOpts(group)
+function! highlight_inherit#getOpts(group)
   let output = execute('hi ' . a:group)
   let list = split(output, '\s\+')
 
   if list[2] == 'links'
-    return GetHighlightOpts(list[4])
+    return highlight_inherit#getOpts(list[4])
   endif
 
   let dict = {}
@@ -18,14 +18,14 @@ function! GetHighlightOpts(group)
 endfunction
 
 " Amalgamated from answers to https://stackoverflow.com/questions/9464844/how-to-get-group-name-of-highlighting-under-cursor-in-vim
-function! SynGroups()
+function! highlight_inherit#SynGroups()
   let l:st = synstack(line('.'), col('.'))
   echom join(map(l:st, "synIDattr(v:val, 'name') . ' -> ' . synIDattr(synIDtrans(v:val), 'name')"), ', ')
 endfun
 
-function! MkHighlightInheriting(new_name, options_dict, inherit)
+function! highlight_inherit#write(new_name, options_dict, inherit)
   let l:hl_opt = []
-  for [key, value] in items(extend(GetHighlightOpts(a:inherit), a:options_dict, "force"))
+  for [key, value] in items(extend(highlight_inherit#getOpts(a:inherit), a:options_dict, "force"))
     call insert(l:hl_opt, key . '=' . value)
   endfor
   execute('hi! ' . a:new_name . ' ' . join(l:hl_opt))

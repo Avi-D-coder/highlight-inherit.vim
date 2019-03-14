@@ -1,19 +1,19 @@
 *highlight-inherit-vim*			Extend highlight groups
 
-GetHighlightOpts({String})				       	*GetHighlightOpts(group)*
+highlight_inherit#getOpts({String})				       	*highlight_inherit#getOpts(group)*
 	Returns a dictionary of options associated with highlight group named {String}.
 	E.g.: {'gui': 'italic,bold', 'ctermfg': '11'}
 	note: this function will recurse down highlight links.
 	A recursive version of https://vi.stackexchange.com/a/12305
 
-SynGroups()			                      		*SynGroups()*
+highlight_inherit#SynGroups()			                      	*highlight_inherit#SynGroups()*
 	echomsgs Highlight groups and links under cursor.
 
-MkHighlightInheriting({String}, {Dict}, {String})
-	MkHighlightInheriting(new_name, options_dict, inherit)
+highlight_inherit#write({String}, {Dict}, {String})
+	highlight_inherit#write(new_name, options_dict, inherit)
 	Creates/Overrides highlight groups *new_name* from *inherit*
 	adding/overwriting options in *options_dict*
-	E.g. :call MkHighlightInheriting("Conditional", {'gui':'bold,italic'}, "Conditional")
+	E.g. :call highlight_inherit#write("Conditional", {'gui':'bold,italic'}, "Conditional")
 	Makes conditionals bold and italic, while leaving color unchanged.
 
 vim:tw=78:ts=8:noet:ft=help:norl:
