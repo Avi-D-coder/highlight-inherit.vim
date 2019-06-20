@@ -1,0 +1,6 @@
+highlight-inherit-vim	doc.txt	/*highlight-inherit-vim*
+highlight_inherit#SynGroups()	doc.txt	/*highlight_inherit#SynGroups()*
+highlight_inherit#getOpts(group)	doc.txt	/*highlight_inherit#getOpts(group)*
+inherit	doc.txt	/*inherit*
+new_name	doc.txt	/*new_name*
+options_dict	doc.txt	/*options_dict*
