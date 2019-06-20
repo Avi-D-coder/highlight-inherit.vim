@@ -1,7 +1,7 @@
 " A recursive version of https://vi.stackexchange.com/a/12305
 function! highlight_inherit#getOpts(group)
   let output = execute('hi ' . a:group)
-  let list = split(output, '\s\+')
+  let list = split(output, '\(\s\|\n\)\+')
 
   if list[2] == 'links'
     return highlight_inherit#getOpts(list[4])
